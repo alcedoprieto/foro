@@ -26,4 +26,10 @@ class CreatePostsTest extends FeatureTestCase{
     $this->see($title);
 
   }
+
+  public function test_creating_post_guess()
+  {
+    $this->visit(route('posts.create'))
+        ->seePageIs(route('login'));
+  }
 }
