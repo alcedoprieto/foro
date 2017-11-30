@@ -1,6 +1,8 @@
 <?php
 
-class CreatePostsTest extends FeatureTestCase{
+class CreatePostsTest extends FeatureTestCase
+{
+
   public function test_a_user_create_a_post(){
     //Having
     $title = 'Esta es una pregunta';
@@ -39,8 +41,9 @@ class CreatePostsTest extends FeatureTestCase{
           ->visit(route('posts.create'))
           ->press('Publicar')
           ->seePageIs(route('posts.create'))
-          ->seeInElement('#field_title.has-error .help-block', 'El campo título es obligatorio')
-          ->seeInElement('#field_content.has-error .help-block', 'El campo contenido es obligatorio');
-          
+          ->seeErrors([
+              'title' => 'El campo título es obligatorio',
+              'content' => 'El campo contenido es obligatorio'
+          ]);          
   }
 }
